@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ProductsApi.DTO;
 using ProductsApi.Interfaces;
 using ProductsApi.Models;
 
@@ -16,11 +17,10 @@ namespace ProductsApi.Controllers
             _category = category;
         }
 
-
         [HttpPost]
-        public async Task<IActionResult> PostCategory([FromBody] Category category)
+        public async Task<IActionResult> PostCategory([FromBody] CategoryRequest category)
         {
-            return await _category.postCategory(category);
+            return await _category.PostCategory(category);
         }
     }
 }

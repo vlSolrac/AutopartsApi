@@ -13,7 +13,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<ICategory, CategoryService>();
+builder.Services.AddScoped<ICategory, CategotyService>();
+builder.Services.AddScoped<IModel, ModelService>();
+builder.Services.AddScoped<ICarComponent, CarComponentService>();
+builder.Services.AddScoped<ICar, CarService>();
 
 var app = builder.Build();
 

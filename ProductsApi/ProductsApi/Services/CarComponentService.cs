@@ -7,12 +7,12 @@ using System.Data.SqlClient;
 
 namespace ProductsApi.Services
 {
-    public class CategotyService : ICategory
+    public class CarComponentService : ICarComponent
     {
         readonly SqlConnection _Conexion;
         readonly string _ambient;
 
-        public CategotyService(IConfiguration configuration)
+        public CarComponentService(IConfiguration configuration)
         {
             string ambient = configuration.GetValue<string>("Ambient");
 
@@ -24,7 +24,7 @@ namespace ProductsApi.Services
             _ambient = ambient;
 
         }
-        public async Task<IActionResult> PostCategory(CategoryRequest category)
+        public async Task<IActionResult> PostCarComponent(CarComponentRequest carcomponent)
         {
             int row;
             try
@@ -32,9 +32,15 @@ namespace ProductsApi.Services
                 _Conexion.Open();
                 SqlCommand cmd = _Conexion.CreateCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "SP_INSERT_CATEGORY";
+                cmd.CommandText = "SP_INSERT_CARCOMPONENT";
 
-                cmd.Parameters.AddWithValue("@Name", string.IsNullOrEmpty(category.Name) ? string.Empty : category.Name);
+                cmd.Parameters.AddWithValue("@Description", string.IsNullOrEmpty(carcomponent.Description) ? string.Empty : carcomponent.Description);
+                cmd.Parameters.AddWithValue("@Stroe", string.IsNullOrEmpty(carcomponent.Store) ? string.Empty : carcomponent.Store);
+                cmd.Parameters.AddWithValue("@Price", carcomponent.Price);
+                cmd.Parameters.AddWithValue("@Manpower", carcomponent.Manpower);
+                cmd.Parameters.AddWithValue("@Img", string.IsNullOrEmpty(carcomponent.Img) ? string.Empty : carcomponent.Img);
+                cmd.Parameters.AddWithValue("@IdCategory", carcomponent.IdCategory);
+                cmd.Parameters.AddWithValue("@IdCar", carcomponent.IdCar);
                 
                 row = await cmd.ExecuteNonQueryAsync();
                 if (row != 0)

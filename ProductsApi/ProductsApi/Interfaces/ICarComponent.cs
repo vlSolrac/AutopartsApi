@@ -4,8 +4,8 @@ using ProductsApi.Models;
 
 namespace ProductsApi.Interfaces
 {
-    public interface ICategory
+    public interface ICarComponent
     {
-        public Task<IActionResult> PostCategory(CategoryRequest category);
+        public Task<IActionResult> PostCarComponent(CarComponentRequest carComponent);
     }
 }

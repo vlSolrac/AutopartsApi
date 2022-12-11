@@ -4,8 +4,8 @@ using ProductsApi.Models;
 
 namespace ProductsApi.Interfaces
 {
-    public interface ICategory
+    public interface IModel
     {
-        public Task<IActionResult> PostCategory(CategoryRequest category);
+        public Task<IActionResult> PostModel(ModelRequest model);
     }
 }
